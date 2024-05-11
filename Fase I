@@ -6,13 +6,13 @@
 
 using namespace std;
 
-// Estructura para almacenar la información de una palabra
+
 struct WordInfo {
     string translation;
     string functionality;
 };
 
-// Diccionario de palabras predefinidas con sus traducciones y descripciones
+
 map<string, WordInfo> predefinedWords = {
     {"asm", {"ensamblador", "Instrucción para insertar lenguaje ensamblador en C++"}},
     {"auto", {"auto", "Tipo de variable deducido automáticamente por el compilador"}},
@@ -21,10 +21,10 @@ map<string, WordInfo> predefinedWords = {
     {"case", {"caso", "Etiqueta para un caso en una declaración switch"}},
     {"catch", {"capturar", "Bloque para manejar excepciones"}},
     {"char", {"caracter", "Tipo de dato para un solo carácter"}},
-    // Agregar más palabras aquí...
+   
 };
 
-// Función para agregar una palabra al archivo
+
 void addWordToFile(const string& word, const string& translation, const string& functionality) {
     ofstream outFile("words.txt", ios::app);
     if (!outFile.is_open()) {
@@ -36,7 +36,7 @@ void addWordToFile(const string& word, const string& translation, const string& 
     cout << "Palabra agregada correctamente." << endl;
 }
 
-// Función para listar todas las palabras en el archivo
+
 void listWordsFromFile() {
     ifstream inFile("words.txt");
     if (!inFile.is_open()) {
@@ -56,7 +56,7 @@ void listWordsFromFile() {
     inFile.close();
 }
 
-// Función para agregar todas las palabras predefinidas al archivo
+
 void addPredefinedWordsToFile() {
     ofstream outFile("words.txt", ios::app);
     if (!outFile.is_open()) {
@@ -71,7 +71,7 @@ void addPredefinedWordsToFile() {
 }
 
 int main() {
-    // Agregar las palabras predefinidas al archivo si no están presentes
+    
     addPredefinedWordsToFile();
 
     int choice;
