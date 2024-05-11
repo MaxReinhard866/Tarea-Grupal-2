@@ -1,0 +1,71 @@
+#include <iostream>
+#include <sstream>
+#include <map>
+#include <vector>
+#include <algorithm>
+
+using namespace std;
+
+// Definición del diccionario de palabras
+map<string, string> dictionary = {
+    {"int", "entero"},
+    {"float", "flotante"},
+    {"double", "doble"},
+    {"string", "cadena"},
+    {"cout", "cout"},
+    {"cin", "cin"},
+    {"if", "si"},
+    {"else", "sino"},
+    {"for", "para"},
+    {"while", "mientras"},
+    {"return", "retorno"}
+    // Agrega más palabras según sea necesario
+};
+
+// Función para traducir una línea de código C++ según el diccionario
+string translateLine(const string& line) {
+    stringstream ss(line);
+    stringstream translatedLine;
+    string word;
+
+    while (ss >> word) {
+        // Eliminar cualquier puntuación (por ejemplo, ; , ( ) { })
+        word.erase(remove_if(word.begin(), word.end(), ::ispunct), word.end());
+
+        // Traducir la palabra según el diccionario
+        auto it = dictionary.find(word);
+        if (it != dictionary.end()) {
+            translatedLine << it->second << " ";
+        } else {
+            translatedLine << word << " ";
+        }
+    }
+
+    return translatedLine.str();
+}
+
+int main() {
+    cout << "Ingrese el código C++ a traducir (presione Ctrl+D para finalizar la entrada):" << endl;
+    
+    // Leer todo el código hasta el final de la entrada
+    stringstream cppCodeStream;
+    string line;
+    while (getline(cin, line)) {
+        cppCodeStream << line << endl;
+    }
+    string cppCode = cppCodeStream.str();
+
+    // Traducir el código línea por línea
+    stringstream translatedCodeStream;
+    stringstream codeStream(cppCode);
+    while (getline(codeStream, line)) {
+        string translatedLine = translateLine(line);
+        translatedCodeStream << translatedLine << endl;
+    }
+
+    // Mostrar el código traducido
+    cout << "Código traducido:" << endl;
+    cout << translatedCodeStream.str();
+
+    return 0;
+}
