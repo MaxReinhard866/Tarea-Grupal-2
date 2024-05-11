@@ -6,7 +6,7 @@
 
 using namespace std;
 
-// Definición del diccionario de palabras
+
 map<string, string> dictionary = {
     {"int", "entero"},
     {"float", "flotante"},
@@ -19,20 +19,20 @@ map<string, string> dictionary = {
     {"for", "para"},
     {"while", "mientras"},
     {"return", "retorno"}
-    // Agrega más palabras según sea necesario
+  
 };
 
-// Función para traducir una línea de código C++ según el diccionario
+
 string translateLine(const string& line) {
     stringstream ss(line);
     stringstream translatedLine;
     string word;
 
     while (ss >> word) {
-        // Eliminar cualquier puntuación (por ejemplo, ; , ( ) { })
+       
         word.erase(remove_if(word.begin(), word.end(), ::ispunct), word.end());
 
-        // Traducir la palabra según el diccionario
+       
         auto it = dictionary.find(word);
         if (it != dictionary.end()) {
             translatedLine << it->second << " ";
@@ -47,7 +47,7 @@ string translateLine(const string& line) {
 int main() {
     cout << "Ingrese el código C++ a traducir (presione Ctrl+D para finalizar la entrada):" << endl;
     
-    // Leer todo el código hasta el final de la entrada
+  
     stringstream cppCodeStream;
     string line;
     while (getline(cin, line)) {
@@ -55,7 +55,7 @@ int main() {
     }
     string cppCode = cppCodeStream.str();
 
-    // Traducir el código línea por línea
+   
     stringstream translatedCodeStream;
     stringstream codeStream(cppCode);
     while (getline(codeStream, line)) {
@@ -63,7 +63,7 @@ int main() {
         translatedCodeStream << translatedLine << endl;
     }
 
-    // Mostrar el código traducido
+   
     cout << "Código traducido:" << endl;
     cout << translatedCodeStream.str();
 
